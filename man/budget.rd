@@ -24,14 +24,14 @@ prevalences. (see help (\code{\link[twostage]{coding}}) for details)
 
 \usage{
 
-budget (y=y,x=x,z=z,prev=prev,factor=NULL,var="var",b=b,c1=c1,c2=c2)
+budget (x=x,y=y,z=z,factor=NULL,prev=prev,var="var",b=b,c1=c1,c2=c2)
 }
 
 \arguments{
 
 REQUIRED ARGUMENTS
-\item{y}{response variable (binary 0-1)}
 \item{x}{matrix of predictor variables} 
+\item{y}{response variable (binary 0-1)}
 \item{z}{matrix of the first stage variables which must be categorical
 	 (can be more than one column)}
 \item{prev}{vector of estimated prevalences for each (y,z) stratum}
@@ -186,7 +186,6 @@ surg        0.179887419}
 \code{\link[twostage]{precision}},\code{\link[twostage]{cass1}},
 \code{\link[twostage]{cass2}},\code{\link[twostage]{coding}}
 }
-
 
 \references{
 	Reilly,M and M.S. Pepe. 1995. A mean score method for 

@@ -20,14 +20,14 @@ advisable to first run the \code{\link[twostage]{coding}} function.
 
 \usage{
 
-ms.nprev(y=y,x=x,z=z,n1="option",prev="option",factor=NULL,print.all=F)
+ms.nprev(x=x,y=y,z=z,n1="option",prev="option",factor=NULL,print.all=FALSE)
 }
 
 \arguments{
 
 REQUIRED ARGUMENTS
-\item{y}{response variable (should be binary 0-1)}
 \item{x}{matrix of predictor variables for regression model} 
+\item{y}{response variable (should be binary 0-1)}
 \item{z}{matrix of any surrogate or auxiliary variables which must be categorical, \cr 
 
 and one of the following:}
@@ -45,7 +45,7 @@ OR}
 OPTIONAL ARGUMENTS}
 
 \item{print.all}{logical value determining all output to be printed. 
-		 The default is False (F).} 
+		 The default is FALSE.} 
 \item{factor}{factor variables; if the columns of the matrix of
 	  predictor variables have names, supply these names, 
 	  otherwise supply the column numbers. MS.NPREV will fit 

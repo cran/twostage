@@ -41,14 +41,13 @@ to ms.nprev expects the first-stage sample sizes to be provided.
 
 
 \usage{
-coding(y=y,x=x,z=z,return=F)
+coding(x=x,y=y,z=z,return=FALSE)
 }
 
 \arguments{
 REQUIRED ARGUMENTS
-
-\item{y}{response variable (should be binary 0-1)}
 \item{x}{matrix of predictor variables for regression model} 
+\item{y}{response variable (should be binary 0-1)}
 \item{z}{matrix of any surrogate or auxiliary variables which must be categorical \cr
 
 
@@ -57,7 +56,7 @@ OPTIONAL ARGUMENTS}
 \item{return}{logical value; if it's TRUE(T) the original surrogate
 	  or auxiliary variables and the re-coded auxilliary 
 	  variables will be returned.   
-	  The default is False (F). 
+	  The default is FALSE. 
 }
 }
 \value{

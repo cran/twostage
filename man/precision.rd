@@ -23,14 +23,14 @@ prevalences. For details, type help(\code{\link[twostage]{coding}})
 
 \usage{
 
-precision (y=y,x=x,z=z,prev=prev,factor=NULL,var="var",prc=prc,c1=c1,c2=c2)
+precision (x=x,y=y,z=z,factor=NULL,var="var",prev=prev,prc=prc,c1=c1,c2=c2)
 }
 
 \arguments{
 
 REQUIRED ARGUMENTS
-\item{y}{response variable (binary 0-1)}
 \item{x}{matrix of predictor variables} 
+\item{y}{response variable (binary 0-1)}
 \item{z}{matrix of the first stage variables which must be categorical
 	 (can be more than one column)}
 \item{prev}{vector of estimated prevalences for each (y,z) stratum}

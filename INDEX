@@ -1,44 +1,16 @@
-This library contains functions for calculating the
-optimal two-stage sampling strategies in Reilly (1996).
-
-The three functions here provide the optimal sampling 
-strategies under different constraints:
-
-  fixed.n       calculates the sampling fractions at the 
-                second stage (given fixed first- and 
-                second-stage sample sizes) which will 
-		minimise the variance of a specified
-                co-efficient in the regression model.
-
-	
-  budget	calculates the first-stage sample size 
-                and the second stage sampling fractions
-                that will maximise precision of a specified
-                co-efficient subject to a given budget.
-
-  precision     calculates the first-stage sample size 
-                and the second stage sampling fractions
-                that will minimise cost subject to
-                a given precision for a specified co-efficient.
-
- two ilustrative datasets, cass1 and cass2 are also included
- in the package. Detailed help on each function and on the illustrative
- data sets can then be viewed be viewed by using help or ? 
- or the HTML help file system.
-
- Please read README.packages for details introduction	
-
- 
-Reilly M, Optimal Sampling Strategies for two-stage studies. 
-         American Journal of Epidemiology, 143, 1, 92-100, 1996
-
-Reilly,M and Pepe MS 1995. A mean score method for 
-		missing and auxiliary covariate data in 
-		regression models. Biometrika 82:299-314
-
-
-
-
- 
-
-
+budget                   Optimal sampling design for 2-stage studies with
+                         fixed budget
+cass1                    The CASS pilot dataset with sex as auxiliary
+                         covariate
+cass2                    The CASS pilot dataset with sex and categorical
+                         weight as auxiliary variables
+coding                   combines two or more surrogate/auxiliary
+                         variables into a vector
+fixed.n                  Optimal second stage sampling fractions, subject
+                         to fixed sample sizes at the first and second
+                         stage
+ms.nprev                 Logistic regression of two-stage data using
+                         second stage sample and first stage sample sizes
+                         or proportions (prevalences) as input
+precision                Optimal sampling design for 2-stage studies with
+                         fixed precision

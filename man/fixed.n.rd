@@ -44,7 +44,7 @@ prevalences. (see help (\code{\link[twostage]{coding}}) for details)
 
 \usage{
 
-fixed.n (y=y,x=x,z=z,n2=n2,factor=NULL,var="var",n1="option",prev="option",frac="option")
+fixed.n (x=x,y=y,z=z,factor=NULL,n2=n2,var="var",n1="option",prev="option",frac="option")
 
 }
 
@@ -52,8 +52,8 @@ fixed.n (y=y,x=x,z=z,n2=n2,factor=NULL,var="var",n1="option",prev="option",frac=
 
 REQUIRED ARGUMENTS
 
-\item{y}{response variable (binary 0-1)}
 \item{x}{matrix of predictor variables} 
+\item{y}{response variable (binary 0-1)}
 \item{z}{matrix of the first stage variables which must be categorical
 	  (can be more than one column)}
 \item{n2}{size of second stage sample}
