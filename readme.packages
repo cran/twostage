@@ -1,0 +1,105 @@
+This library contains functions for calculating the
+optimal two-stage sampling strategies in Reilly (1996).
+Briefly, the methods are applicable in studies
+where some categorical covariates (Z) and a dichotomous
+outcome variable (Y) are to be measured at the first stage 
+and additional covariates (X, which may be continuous)
+are to be gathered on a subsample at the second stage. 
+Logistic regression analysis of all the data will then 
+proceed using the Mean Score method (Reilly and Pepe, 1995). 
+In addition to the total sample size, the variance of the 
+Mean Score estimate depends on the second-stage sampling 
+fractions in each of the (Y,Z) strata. Hence the study size 
+and/or the second-stage sampling fractions can be "optimised". 
+
+The three functions here provide the optimal sampling 
+strategies under different constraints:
+
+  fixed.n       calculates the sampling fractions at the 
+                second stage (given fixed first- and 
+                second-stage sample sizes) which will 
+		minimise the variance of a specified
+                co-efficient in the regression model.
+
+	
+  budget	calculates the first-stage sample size 
+                and the second stage sampling fractions
+                that will maximise precision of a specified
+                co-efficient subject to a given budget.
+
+  precision     calculates the first-stage sample size 
+                and the second stage sampling fractions
+                that will minimise cost subject to
+                a given precision for a specified co-efficient.
+
+
+ Each of the functions requires pilot data on (Z,Y,X) as input:
+ this would typically be a small number of X observations in each
+ of the (Y,Z) strata. Knowledge is also required of the prevalences
+ of these strata in the population, which can be provided as
+ estimates or can be computed from the first-stage data if 
+ available. 
+  
+
+INSTALLATION GUIDE
+
+The simplest installation can be done by unzipping
+the BINARY package directly to R_HOME/library
+(NOTE: you can't do this with the source file).
+
+For users familiar with building R packages, the
+following command can be used to install the package
+(you need to have perl installed):
+
+`make BUILD=option pkg-twostage' 
+
+executed from R_HOME/src/gnuwin32, after you have unzipped
+this package to R_HOME/src/library. 
+
+Alternatively you can use the UNIX command:
+
+`Rcmd install twostage'
+
+executed from R_HOME/src/library
+
+After the package has been installed, the command:
+
+library(twostage)
+
+ will make the functions available. Detailed help on each function 
+ and on the illustrative data sets (cass1, cass2) can then 
+ be viewed by using help or ? or the HTML help file system.
+
+ This code has been tested under R1.2.0 for windows,
+ some changes may be needed for other versions or operating
+ systems. 
+
+ We would be happy to hear about any bugs that you find, and to
+ receive any comments or suggestions for improvements.
+ 
+
+Marie Reilly 	        	& 	Agus Salim
+Dept. of Epidemiology 			Dept. of Statistics
+University College Cork, 		University College Cork, 
+Ireland					Ireland
+E-mail: marie.reilly@ucc.ie		E-mail: a.salim@ucc.ie
+
+
+REFERENCES
+
+Reilly M. 1996. Optimal Sampling Strategies for two-stage studies, 
+         American Journal of Epidemiology. 143:92-100
+
+Reilly,M and Pepe MS. 1995. A mean score method for 
+		missing and auxiliary covariate data in 
+		regression models. Biometrika 82:299-314
+
+
+------------------------------------------------------------------
+This software may be freely used for non-commercial purposes
+ and freely distributed.
+
+
+ 
+
+
