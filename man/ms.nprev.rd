@@ -194,6 +194,6 @@ incomplete cases.}
 
 }
 	
-\keyword{regression, missing data}
+\keyword{regression}
 
 	

@@ -199,4 +199,4 @@ surg        0.179887419}
 
 }
 
-\keyword{design,sampling}
+\keyword{design}

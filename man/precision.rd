@@ -211,4 +211,4 @@ the same except for rounding error.
 
 }
 
-\keyword{design,sampling}
+\keyword{design}

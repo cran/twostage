@@ -214,4 +214,4 @@ sex         0.16472156
 
 }
 
-\keyword{design,sampling}
+\keyword{design}
