@@ -118,16 +118,16 @@ minimising the study cost. We assume a first-stage cost of £ 1/unit
 and second-stage cost of £ 0.5/unit,}
 
 data(cass2) 
-y_cass2[,1]	             #response variable
-z_cass2[,10]             #auxiliary variable
-x_cass2[,c(2,4:9)]       #predictor variables in the model
+y=cass2[,1]	             #response variable
+z=cass2[,10]             #auxiliary variable
+x=cass2[,c(2,4:9)]       #predictor variables in the model
 
 
 # run CODING function to see in which order we should enter prevalences
 coding(x=x,y=y,z=z)	
 
 # supplying the prevalence (from Table 5, Reilly 1996)
-prev_c(0.0197823937,0.1339020772,0.6698813056,0.0544015826,
+prev=c(0.0197823937,0.1339020772,0.6698813056,0.0544015826,
 + 0.0503214639,0.0467359050,0.0009891197,0.0040801187,0.0127349159,
 + 0.0022255193,0.0032146390,0.0017309594)
 

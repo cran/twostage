@@ -115,15 +115,15 @@ the sampling strategy that optimises the precision of the
 coefficient for SEX : see output below.}
 
 data(cass2)
-y_cass2[,1]            #response variable
-z_cass2[,10]           #auxiliary variable
-x_cass2[,c(2,4:9)]     #predictor variables
+y=cass2[,1]            #response variable
+z=cass2[,10]           #auxiliary variable
+x=cass2[,c(2,4:9)]     #predictor variables
 
 # run CODING function to see in which order we should enter prevalences
 coding(x=x,y=y,z=z)	
 # supplying the prevalence (from Table 5, Reilly 1996)
 
-prev_c(0.0197823937,0.1339020772,0.6698813056,0.0544015826,
+prev=c(0.0197823937,0.1339020772,0.6698813056,0.0544015826,
 + 0.0503214639,0.0467359050,0.0009891197,0.0040801187,0.0127349159,
 + 0.0022255193,0.0032146390,0.0017309594)
 

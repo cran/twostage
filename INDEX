@@ -2,8 +2,8 @@ budget                  Optimal sampling design for 2-stage studies
                         with fixed budget
 cass1                   The CASS pilot dataset with sex as auxiliary
                         covariate
-cass2                   The CASS pilot dataset with sex and categorical
-                        weight as auxiliary variables
+cass2                   The CASS pilot dataset with sex and
+                        categorical weight as auxiliary variables
 coding                  combines two or more surrogate/auxiliary
                         variables into a vector
 fixed.n                 Optimal second stage sampling fractions,

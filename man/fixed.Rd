@@ -157,14 +157,14 @@ The following commands give the output below:
 }
 
 data(cass1)
-y_cass1[,1]     #--- the response variable is mortality
-z_cass1[,3]     #--- the auxiliary variable is sex
-x_cass1[,2:3] #--- the variables in the model are sex and age
+y=cass1[,1]     #--- the response variable is mortality
+z=cass1[,3]     #--- the auxiliary variable is sex
+x=cass1[,2:3] #--- the variables in the model are sex and age
 
 # run CODING function to see in which order we should enter n1
 coding(x=x,y=y,z=z)	
 #supplying the first stage sample sizes
-n1_c(6666, 1228, 144, 58)
+n1=c(6666, 1228, 144, 58)
  
 # variable to be optimised (in our case sex)
 fixed.n(x=x,y=y,z=z,n1=n1,var="sex",n2=1000)

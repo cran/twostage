@@ -143,7 +143,7 @@ help(cass1)        #for details
 An analysis of the pilot data using Mean Score}
 
 # supply the first stage sample sizes in the correct order
-n1_c(6666, 1228, 144, 58)
+n1=c(6666, 1228, 144, 58)
 ms.nprev(y=cass1[,1], x=cass1[,2:3],z=cass1[,3],n1=n1)
 
 \dontrun{gives the results:

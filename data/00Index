@@ -1,4 +1,4 @@
 cass1                   The CASS pilot dataset with sex as auxiliary
                         covariate
-cass2                   The CASS pilot dataset with sex and categorical
-                        weight as auxiliary variables
+cass2                   The CASS pilot dataset with sex and
+                        categorical weight as auxiliary variables
