@@ -1,5 +1,5 @@
 
-fixed.n_function(x=x,y=y,z=z,factor=NULL,n2=n2,var=NULL,n1="option",prev="option",frac="option")
+fixed.n<-function(x=x,y=y,z=z,factor=NULL,n2=n2,var=NULL,n1="option",prev="option",frac="option")
 {
  #--function to calculate the optimal second stage 
  #--sample once you already get your first stage sample and want
@@ -9,13 +9,13 @@ fixed.n_function(x=x,y=y,z=z,factor=NULL,n2=n2,var=NULL,n1="option",prev="option
  #--on the logistic regression model, therefore your response
  #--variable have to be binary.
 
- Wzykk_1 
+ Wzykk<-1 
 
  #---if you only know the prevalence of the first stage sample-----
  #---you also need to suply the relative fraction of second stage
  #---sample to the first stage sample
 
- chkvar_is.character(var)
+ chkvar<-is.character(var)
  if(!chkvar)
 	stop("Please enter the variable name to be optimised!")
 
@@ -26,21 +26,21 @@ fixed.n_function(x=x,y=y,z=z,factor=NULL,n2=n2,var=NULL,n1="option",prev="option
  	if (abs(sum(prev)-1)>0.01) 
 		stop("Please check the prevalences it does not some up to 1")
 
- 	out_ms.nprev(x=x,y=y,z=z,factor=factor,prev=prev,print.all=T)
- 	table_out$table
- 	label_rownames(out$parameters)
+ 	out<-ms.nprev(x=x,y=y,z=z,factor=factor,prev=prev,print.all=TRUE)
+ 	table<-out$table
+ 	label<-rownames(out$parameters)
 
- 	Wzy_out$Wzy
- 	invI_solve(out$Ihat)
+ 	Wzy<-out$Wzy
+ 	invI<-solve(out$Ihat)
 
- 	nvar_ncol(invI)
- 	k_match(var,label)
+ 	nvar<-ncol(invI)
+ 	k<-match(var,label)
 
  	if(is.na(k))
-		stop(paste(var,"IS NOT FOUND, PLS CHECK THE VAR NAME"),call.=F)
+		stop(paste(var,"IS NOT FOUND, PLS CHECK THE VAR NAME"),call.=FALSE)
 
  	for (i in 1:length(prev))
-		Wzykk[i]_Wzy[k,k,i]
+		Wzykk[i]<-Wzy[k,k,i]
 
 
  	numer<-frac*sqrt(Wzykk)
@@ -50,91 +50,91 @@ fixed.n_function(x=x,y=y,z=z,factor=NULL,n2=n2,var=NULL,n1="option",prev="option
  	#-- if some of the strata have zero sampling fraction the program will terminate
 
  	if (sum(round(prop,4)==0)>0) {
-		table.zero_cbind(table,prop)
-		id_1:nrow(table)
-		zrpost_id[round(prop,4)==0]
-		table.zero_round(table.zero[zrpost,],4)
+		table.zero<-cbind(table,prop)
+		id<-1:nrow(table)
+		zrpost<-id[round(prop,4)==0]
+		table.zero<-round(table.zero[zrpost,],4)
 		print(table.zero)
 		cat("These strata have 0 (zero) 2nd samp.fraction","\n") 
-		stop("please redefined your strata OR gather more pilot obs",call.=F)
+		stop("please redefined your strata OR gather more pilot obs",call.=FALSE)
   	}	
 
  	# correcting the proportion of second stage sample size <=100%
- 	id_1:length(prop)
- 	index1_NULL
+ 	id<-1:length(prop)
+ 	index1<-NULL
 	while (sum(prop>1)>0) {
-		index1_c(index1,id[rank(prop)==length(prop)])
-		frac.1_frac-sum(prev[index1])
-		numer1_(frac.1)*sqrt(Wzykk)
-		denom1_sum(sqrt(Wzykk[-index1])*prev[-index1])
-		prop_numer1/denom1
-		prop[index1]_1
+		index1<-c(index1,id[rank(prop)==length(prop)])
+		frac.1<-frac-sum(prev[index1])
+		numer1<-(frac.1)*sqrt(Wzykk)
+		denom1<-sum(sqrt(Wzykk[-index1])*prev[-index1])
+		prop<-numer1/denom1
+		prop[index1]<-1
 	}
- 	n2_round(prop*prev*n2/frac)
- 	prop_round(prop,4)
-	final.est_cbind(prop,n2)
- 	colnames(final.est)_c("prop","samp.2nd")
+ 	n2<-round(prop*prev*n2/frac)
+ 	prop<-round(prop,4)
+	final.est<-cbind(prop,n2)
+ 	colnames(final.est)<-c("prop","samp.2nd")
 	list(prop=cbind(table,final.est))
  }
 
 #--if you know the sample size of the first stage study-----------
 else {
-	out_ms.nprev(x=x,y=y,z=z,factor=factor,n1=n1,print.all=T)
-	table_out$table
+	out<-ms.nprev(x=x,y=y,z=z,factor=factor,n1=n1,print.all=TRUE)
+	table<-out$table
 
-	Wzy_out$Wzy 
-	invI_solve(out$Ihat)
-	label_rownames(out$parameters)
-	nvar_ncol(invI)
-	k_match(var,label)
+	Wzy<-out$Wzy 
+	invI<-solve(out$Ihat)
+	label<-rownames(out$parameters)
+	nvar<-ncol(invI)
+	k<-match(var,label)
 
 	if(is.na(k))
-		stop(paste(var,"IS NOT FOUND, PLS CHECK THE VAR NAME"),call.=F)
+		stop(paste(var,"IS NOT FOUND, PLS CHECK THE VAR NAME"),call.=FALSE)
 
 	for (i in 1:length(n1))
-		Wzykk[i]_Wzy[k,k,i]
+		Wzykk[i]<-Wzy[k,k,i]
 
-	prev_n1/sum(n1)
-	numer_(n2/sum(n1))*sqrt(Wzykk)
-	denom_sum(prev*sqrt(Wzykk))
-	prop_numer/denom
+	prev<-n1/sum(n1)
+	numer<-(n2/sum(n1))*sqrt(Wzykk)
+	denom<-sum(prev*sqrt(Wzykk))
+	prop<-numer/denom
 
 #-- if some of the strata have zero sampling fraction the program will terminate
 
 	if (sum(round(prop,4)==0)>0) {
-		table.zero_cbind(table,prop)
-		id_1:nrow(table)
-		zrpost_id[round(prop,4)==0]
-		table.zero_round(table.zero[zrpost,],4)
+		table.zero<-cbind(table,prop)
+		id<-1:nrow(table)
+		zrpost<-id[round(prop,4)==0]
+		table.zero<-round(table.zero[zrpost,],4)
 		print(table.zero)
 		cat("These strata have 0 (zero) 2nd samp.fraction","\n") 
-		stop("please redefined your strata OR gather more pilot obs",call.=F)
+		stop("please redefined your strata OR gather more pilot obs",call.=FALSE)
 	}	
 
 # correcting the proportion of second stage sample size <=100%
-	id_1:length(prop)
-	index1_NULL
+	id<-1:length(prop)
+	index1<-NULL
 	while (sum(prop>1)>0){
-		index1_c(index1,id[rank(prop)==length(prop)])
-		n2.1_n2-sum(n1[index1])
-		numer1_(n2.1/sum(n1))*sqrt(Wzykk)
-		denom1_sum(sqrt(Wzykk[-index1])*prev[-index1])
-		prop_numer1/denom1
-		prop[index1]_1
+		index1<-c(index1,id[rank(prop)==length(prop)])
+		n2.1<-n2-sum(n1[index1])
+		numer1<-(n2.1/sum(n1))*sqrt(Wzykk)
+		denom1<-sum(sqrt(Wzykk[-index1])*prev[-index1])
+		prop<-numer1/denom1
+		prop[index1]<-1
 	}
 
 #---calculate the minimum variance obtained by the design
-	wgt_prev/prop*(1-prop)
-	result _ 0
-	varsi_ar_array(0,dim=c(nrow(invI),nrow(invI),length(wgt)))
+	wgt<-prev/prop*(1-prop)
+	result <- 0
+	varsi<-ar<-array(0,dim=c(nrow(invI),nrow(invI),length(wgt)))
 	for(i in 1:length(wgt)) {
-		varsi _Wzy[,,i]
-		result _ result + varsi * wgt[i]
+		varsi <-Wzy[,,i]
+		result <- result + varsi * wgt[i]
 		}
 	
-	Vhat _ result	
+	Vhat <- result	
 	
-	V _ (invI + Vhat)/sum(n1)
+	V <- (invI + Vhat)/sum(n1)
 
 
 #--the function will return the number of sample you should
@@ -143,16 +143,16 @@ else {
 
 	n2<-round(n1*prop)
 	prop <- round(prop,4)
-	final.est_cbind(prop,n2)
-	colnames(final.est)_c("prop","samp.2nd")
-	se_as.matrix(sqrt(diag(V)))
-	rownames(se)_label
+	final.est<-cbind(prop,n2)
+	colnames(final.est)<-c("prop","samp.2nd")
+	se<-as.matrix(sqrt(diag(V)))
+	rownames(se)<-label
 	list(design=cbind(table,final.est),se=se)
  }
 # close function
 }
 
-budget_
+budget<-
 function(x="covariate",y="response",z="auxiliary",factor=NULL,prev=prev,var=NULL,b="budget", c1="first cost",c2="second cost")
 
 {
@@ -163,79 +163,79 @@ function(x="covariate",y="response",z="auxiliary",factor=NULL,prev=prev,var=NULL
  #   of the kth variable (the variable we want to optimise) on the    
  #   logistic regression model.
 
- chkvar_is.character(var)
+ chkvar<-is.character(var)
  if(!chkvar)
 	stop("Please enter the variable name to be optimised!")
 
- Wzykk_cost_1
- out_ms.nprev(x=x,z=z,y=y,factor=factor,prev=prev,print.all=T)
- table_out$table
- label_rownames(out$parameters)
+ Wzykk<-cost<-1
+ out<-ms.nprev(x=x,z=z,y=y,factor=factor,prev=prev,print.all=TRUE)
+ table<-out$table
+ label<-rownames(out$parameters)
 
- Wzy_out$Wzy
- n2_out$table[,4]
- invI_solve(out$Ihat)
- nvar_ncol(invI)
- k_match(var,label)
+ Wzy<-out$Wzy
+ n2<-out$table[,4]
+ invI<-solve(out$Ihat)
+ nvar<-ncol(invI)
+ k<-match(var,label)
  if(is.na(k))
-	stop(paste(var,"IS NOT FOUND, PLS CHECK THE VAR NAME"),call.=F)
+	stop(paste(var,"IS NOT FOUND, PLS CHECK THE VAR NAME"),call.=FALSE)
 
  #--- check the prevalences
  if (abs(sum(prev)-1)>0.01) 
 	stop("Please check the prevalences it does not some up to 1")
 
  for (i in 1:length(prev))
-	Wzykk[i]_Wzy[k,k,i]
+	Wzykk[i]<-Wzy[k,k,i]
 
- id_1:length(prev)
- index1_NULL
- subs_Wzykk
- denom_invI[k,k]-sum(prev*Wzykk)
+ id<-1:length(prev)
+ index1<-NULL
+ subs<-Wzykk
+ denom<-invI[k,k]-sum(prev*Wzykk)
 
  #---check if the denominator is less than zero (we will sample 100%
  #---from stratum causing the denominator be negative. The optimization
  #---will take place on the rest of the strata 
  while (denom<=0){
-	index1_c(index1,id[rank(subs[id])==(length(subs)-length(index1))])
-	denom_invI[k,k]-sum(prev[-index1]*Wzykk[-index1])
+	index1<-c(index1,id[rank(subs[id])==(length(subs)-length(index1))])
+	denom<-invI[k,k]-sum(prev[-index1]*Wzykk[-index1])
 	}
 
  if (!is.null(index1)){
-	above_sqrt((c1+sum(prev[index1]*c2))*c2)*sum(prev[-index1]*sqrt(Wzykk)[-index1])
-	below_sqrt(invI[k,k]-sum(prev[-index1]*Wzykk[-index1]))
-	n_b*((c1+sum(prev[index1]*c2))+above/below)^(-1)
-	prop_(b-n*(c1+sum(prev[index1]*c2)))/(n*c2)*(sqrt(Wzykk)/sum(prev[-index1]*sqrt(Wzykk[-index1])))
-	prop[index1]_1
+	above<-sqrt((c1+sum(prev[index1]*c2))*c2)*sum(prev[-index1]*sqrt(Wzykk)[-index1])
+	below<-sqrt(invI[k,k]-sum(prev[-index1]*Wzykk[-index1]))
+	n<-b*((c1+sum(prev[index1]*c2))+above/below)^(-1)
+	prop<-(b-n*(c1+sum(prev[index1]*c2)))/(n*c2)*(sqrt(Wzykk)/sum(prev[-index1]*sqrt(Wzykk[-index1])))
+	prop[index1]<-1
 	}
 
  else {
-	above_sqrt(c1*c2)*sum(prev*sqrt(Wzykk))
-	below_sqrt(invI[k,k]-sum(prev*Wzykk))
-	n_b*(c1+above/below)^(-1)
-	prop_(b-n*c1)/(n*c2)*(sqrt(Wzykk)/sum(prev*sqrt(Wzykk)))
+	above<-sqrt(c1*c2)*sum(prev*sqrt(Wzykk))
+	below<-sqrt(invI[k,k]-sum(prev*Wzykk))
+	n<-b*(c1+above/below)^(-1)
+	prop<-(b-n*c1)/(n*c2)*(sqrt(Wzykk)/sum(prev*sqrt(Wzykk)))
 	}
 
  #-- if some of the strata have zero sampling fraction the program will terminate
 
  if (sum(round(prop,4)==0)>0) {
-	table.zero_cbind(table,prop)
-	id_1:nrow(table)
-	zrpost_id[round(prop,4)==0]
-	table.zero_round(table.zero[zrpost,],4)
+	table.zero<-cbind(table,prop)
+	id<-1:nrow(table)
+	zrpost<-id[round(prop,4)==0]
+	table.zero<-round(table.zero[zrpost,],4)
 	print(table.zero)
 	cat("These strata have 0 (zero) 2nd samp.fraction","\n") 
-	stop("please redefined your strata OR gather more pilot obs",call.=F)
+	stop("please redefined your strata OR gather more pilot obs",call.=FALSE)
 	}	
 
  #---correcting the proportion of second stage sample size <=100%
  while (sum(prop>1)>0){
-	index1_c(index1,id[rank(prop)==length(prop)])
-	above_sqrt((c1+sum(prev[index1]*c2))*c2)*sum(prev[-index1]*sqrt(Wzykk)[-index1])
-	below_sqrt(invI[k,k]-sum(prev[-index1]*Wzykk[-index1]))
-	n_b*((c1+sum(prev[index1]*c2))+above/below)^(-1)
-	prop_(b-n*(c1+sum(prev[index1]*c2)))/(n*c2)*(sqrt(Wzykk)/sum(prev[-index1]*sqrt(Wzykk[-index1])))
-	prop[index1]_1
-	cost_(c1*round(n)+sum(round((prop*prev*round(n)*c2))))
+	index1<-c(index1,id[rank(prop)==length(prop)])
+	above<-sqrt((c1+sum(prev[index1]*c2))*c2)*sum(prev[-index1]*sqrt(Wzykk)[-index1])
+	below<-sqrt(invI[k,k]-sum(prev[-index1]*Wzykk[-index1]))
+	n<-b*((c1+sum(prev[index1]*c2))+above/below)^(-1)
+	prop<-(b-n*(c1+sum(prev[index1]*c2)))/(n*c2)*(sqrt(Wzykk)/sum(prev[-index1]*sqrt(Wzykk[-index1])))
+	prop[index1]<-1
+	cost<-(c1*round(n)+sum(round((prop*prev*round(n)*c2))))
  	}
 
  #---calculate the minimum variance obtained by the design
@@ -251,19 +251,19 @@ function(x="covariate",y="response",z="auxiliary",factor=NULL,prev=prev,var=NULL
 
  #---the function will return the total number of sample and the second stage proportion
  #---for each stratum to achieve minimum variance.
- n_round(n)
- n2_round(prev*prop*n)
- prop_round(prop,4)
- final.est_cbind(prop,n2)
- colnames(final.est)_c("prop","samp.2nd")
- se_as.matrix(sqrt(diag(V)))
- rownames(se)_label
+ n<-round(n)
+ n2<-round(prev*prop*n)
+ prop<-round(prop,4)
+ final.est<-cbind(prop,n2)
+ colnames(final.est)<-c("prop","samp.2nd")
+ se<-as.matrix(sqrt(diag(V)))
+ rownames(se)<-label
 
  return(n=n,design=cbind(table,final.est),se=se)
  }
 
 
-precision_function(x=x,y=y,z=z,factor=NULL,var=NULL,prev=prev,prc="precision",c1="first cost",c2="second cost")
+precision<-function(x=x,y=y,z=z,factor=NULL,var=NULL,prev=prev,prc="precision",c1="first cost",c2="second cost")
 
 {
  #---functionto compute optimal sampling design for two-stage-studies
@@ -271,24 +271,24 @@ precision_function(x=x,y=y,z=z,factor=NULL,var=NULL,prev=prev,prc="precision",c1
  #---number of sample and the second stage proportion in order to minimize the cost
  #---to achieve the wanted variance.
 
- Wzykk_cost_1
+ Wzykk<-cost<-1
 
- chkvar_is.character(var)
+ chkvar<-is.character(var)
  if(!chkvar)
 	stop("Please enter the variable name to be optimised!")
 
- out_ms.nprev(x=x,z=z,y=y,factor=factor,prev=prev,print.all=T)
- table_out$table
- label_rownames(out$parameters)
+ out<-ms.nprev(x=x,z=z,y=y,factor=factor,prev=prev,print.all=TRUE)
+ table<-out$table
+ label<-rownames(out$parameters)
 
- Wzy_out$Wzy
- n2_out$table[,4]
- invI_solve(out$Ihat)
+ Wzy<-out$Wzy
+ n2<-out$table[,4]
+ invI<-solve(out$Ihat)
 
- nvar_ncol(invI)
- k_match(var,label)
+ nvar<-ncol(invI)
+ k<-match(var,label)
  if(is.na(k))
-	stop(paste(var,"IS NOT FOUND, PLS CHECK THE VAR NAME"),call.=F)
+	stop(paste(var,"IS NOT FOUND, PLS CHECK THE VAR NAME"),call.=FALSE)
 
  #--- check the prevalences
 
@@ -296,62 +296,62 @@ precision_function(x=x,y=y,z=z,factor=NULL,var=NULL,prev=prev,prc="precision",c1
 	stop("Please check the prevalences it does not some up to 1")
 
  for (i in 1:length(prev))
-	Wzykk[i]_Wzy[k,k,i]
+	Wzykk[i]<-Wzy[k,k,i]
 
- id_1:length(prev)
- index1_NULL
- subs_prev*Wzykk
- denom_invI[k,k]-sum(subs)
+ id<-1:length(prev)
+ index1<-NULL
+ subs<-prev*Wzykk
+ denom<-invI[k,k]-sum(subs)
 
  #--check if the denominator is less than zero (we decide to take 100% of
  #--the first stage sample from the stratum causing negative denominator
 
  while (denom<=0){
-	index1_c(index1,id[rank(subs[id])==(length(subs)-length(index1))])
-	denom_invI[k,k]-sum(subs[-index1])
+	index1<-c(index1,id[rank(subs[id])==(length(subs)-length(index1))])
+	denom<-invI[k,k]-sum(subs[-index1])
 	}
 
  # if one or more strata has a big value of prev*Wzykk, we will
  # sample all strata members for the second stage
 
  if (!is.null(index1)){
-	n_denom/prc+sqrt(c2/(c1+sum(prev[index1]*c2)))/prc*sum(prev[-index1]*
+	n<-denom/prc+sqrt(c2/(c1+sum(prev[index1]*c2)))/prc*sum(prev[-index1]*
 	sqrt(Wzykk[-index1])*sqrt(denom))	
-	prop_sqrt((c1+sum(prev[index1]*c2))/c2)*sqrt(Wzykk/denom)
-	prop[index1]_1
+	prop<-sqrt((c1+sum(prev[index1]*c2))/c2)*sqrt(Wzykk/denom)
+	prop[index1]<-1
 	}
 
  else {
-	n_denom/prc+sqrt(c2/c1)/prc*sum(prev*
+	n<-denom/prc+sqrt(c2/c1)/prc*sum(prev*
 	sqrt(Wzykk)*sqrt(denom))	
-	prop_sqrt(c1/c2)*sqrt(Wzykk/denom)
-	prop[index1]_1
+	prop<-sqrt(c1/c2)*sqrt(Wzykk/denom)
+	prop[index1]<-1
 	}
 
  #-- if some of the strata have zero sampling fraction the program will terminate
  if (sum(round(prop,4)==0)>0) {
-	table.zero_cbind(table,prop)
-	id_1:nrow(table)
-	zrpost_id[round(prop,4)==0]
-	table.zero_round(table.zero[zrpost,],4)
+	table.zero<-cbind(table,prop)
+	id<-1:nrow(table)
+	zrpost<-id[round(prop,4)==0]
+	table.zero<-round(table.zero[zrpost,],4)
 	print(table.zero)
 	cat("These strata have 0 (zero) 2nd samp.fraction","\n") 
-	stop("please redefined your strata OR gather more pilot obs",call.=F)
+	stop("please redefined your strata OR gather more pilot obs",call.=FALSE)
  	}	
 
 # correcting the proportion of second stage sample size <=100%
  while (sum(prop>1)>0){
-	index1_c(index1,id[rank(prop)==length(prop)])
-	denom_invI[k,k]-sum(subs[-index1])
-	n_denom/prc+sqrt(c2/(c1+sum(prev[index1]*c2)))/prc*sum(prev[-index1]*
+	index1<-c(index1,id[rank(prop)==length(prop)])
+	denom<-invI[k,k]-sum(subs[-index1])
+	n<-denom/prc+sqrt(c2/(c1+sum(prev[index1]*c2)))/prc*sum(prev[-index1]*
 	sqrt(Wzykk[-index1])*sqrt(denom))	
-	prop_sqrt((c1+sum(prev[index1]*c2))/c2)*sqrt(Wzykk/denom)
-	prop[index1]_1
+	prop<-sqrt((c1+sum(prev[index1]*c2))/c2)*sqrt(Wzykk/denom)
+	prop[index1]<-1
 	}
 
- n_round(n)
- n2_round(prev*prop*n)
- prop_round(prop,4)
+ n<-round(n)
+ n2<-round(prev*prop*n)
+ prop<-round(prop,4)
 
  wgt<-prev/prop*(1-prop)
  result <- 0
@@ -362,15 +362,15 @@ precision_function(x=x,y=y,z=z,factor=NULL,var=NULL,prev=prev,prc="precision",c1
 	}
  Vhat <- result	
  V <- (invI + Vhat)/n
- cost_(c1*round(n)+sum(round((prop*prev*round(n)*c2))))
+ cost<-(c1*round(n)+sum(round((prop*prev*round(n)*c2))))
 
  #---The function will return the total number of sample, the proportion of
  #---the second stage sample and the minimum cost for achieving the
  #---wanted variance.
- final.est_cbind(prop,n2)
- colnames(final.est)_c("prop","samp.2nd")
- var_as.matrix(diag(V))
- rownames(var)_label
+ final.est<-cbind(prop,n2)
+ colnames(final.est)<-c("prop","samp.2nd")
+ var<-as.matrix(diag(V))
+ rownames(var)<-label
 
  return(n=n,design=cbind(table,final.est),cost=cost,var=var)
  }
@@ -378,7 +378,7 @@ precision_function(x=x,y=y,z=z,factor=NULL,var=NULL,prev=prev,prc="precision",c1
 
 #   @@@@@@@@@@@@@@@@@@@@@@@@@   MS.NPREV  FUNCTION  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
-"ms.nprev"_function(x="complete data",y=y,z=z,n1="option",prev="option",factor=NULL,print.all=FALSE)
+"ms.nprev"<-function(x="complete data",y=y,z=z,n1="option",prev="option",factor=NULL,print.all=FALSE)
 {
 # this function uses the second-stage (i.e. complete ) data and the first-stage
 # sample sizes (or prevalences) to compute Mean Score estimates of the coefficients
@@ -418,11 +418,11 @@ precision_function(x=x,y=y,z=z,factor=NULL,var=NULL,prev=prev,prc="precision",c1
  print("must supply the first-stage sample sizes or prevalences")
  print (" Type ?coding for details!")
 
- stop1_c("ARE NOT FOUND PLEASE CHECK COL NAMES OR ENTER COL NUMBER IN THE PREDICTOR MATRIX")         
- z1_data.frame(z)
- z.old_as.matrix(z) 
+ stop1<-c("ARE NOT FOUND PLEASE CHECK COL NAMES OR ENTER COL NUMBER IN THE PREDICTOR MATRIX")         
+ z1<-data.frame(z)
+ z.old<-as.matrix(z) 
 
- z_coding(x=x,y=y,z=z,return=T)$z
+ z<-coding(x=x,y=y,z=z,return=TRUE)$z
   
  ylev<-as.numeric(levels(factor(y)))
  zlev<-as.numeric(levels(factor(z)))
@@ -448,35 +448,36 @@ precision_function(x=x,y=y,z=z,factor=NULL,var=NULL,prev=prev,prc="precision",c1
 	if (length(factor) > 0) {
 		if(is.character(factor)) {
 		   for (i in 1:length(factor)) {
-			ind_ifelse(colnames(rdata)==factor[i],1,0)
+			ind<-ifelse(colnames(rdata)==factor[i],1,0)
 			if (sum(ind)==0) {
-			stop(paste(factor[i],stop1),call.=F)
+			stop(paste(factor[i],stop1),call.=FALSE)
 			}	
-		varpost_order(ind)[ncol(rdata)]
-		ff_factor(rdata[,varpost])
-		factlev_levels(ff)
-		dummy_as.data.frame(model.matrix(~ ff - 1)[,-1])
-		colnames(dummy)_paste(colnames(rdata)[varpost], factlev[-1], sep = "")
-		rdata_rdata[,-varpost]
-		rdata_cbind(rdata,dummy)
+		varpost<-order(ind)[ncol(rdata)]
+		ff<-factor(rdata[,varpost])
+		factlev<-levels(ff)
+		dummy<-as.data.frame(model.matrix(~ ff - 1)[,-1])
+		colnames(dummy)<-paste(colnames(rdata)[varpost], factlev[-1], sep = "")
+		rdata<-rdata[,-varpost]
+		rdata<-cbind(rdata,dummy)
 			
 		}
  	}
 
 	else if (is.numeric(factor)){
-		varpost_factor+1
-		ind_ifelse(varpost>ncol(rdata),1,0)
+		varpost<-factor+1
+		ind<-ifelse(varpost>ncol(rdata),1,0)
 		if (sum(ind)>0) {
-			stop("COLUMN NUMBER OF FACTOR VARIABLES IS OUT OF BOUND,PLEASE CHECK!")			  	}
+			stop("COLUMN NUMBER OF FACTOR VARIABLES IS OUT OF BOUND,PLEASE CHECK!")			  	
 			}
+		}
 		
 		for (i in 1:length(factor)) {
-			ff_factor(rdata[,varpost[i]])
-			factlev_levels(ff)
-			dummy_as.data.frame(model.matrix(~ ff - 1)[,-1])
-			colnames(dummy)_paste(colnames(rdata)[varpost[i]], factlev[-1], sep = "")
-			rdata_rdata[,-varpost[i]]
-			rdata_cbind(rdata,dummy)
+			ff<-factor(rdata[,varpost[i]])
+			factlev<-levels(ff)
+			dummy<-as.data.frame(model.matrix(~ ff - 1)[,-1])
+			colnames(dummy)<-paste(colnames(rdata)[varpost[i]], factlev[-1], sep = "")
+			rdata<-rdata[,-varpost[i]]
+			rdata<-cbind(rdata,dummy)
 			}
 	}
 
@@ -521,34 +522,34 @@ else
 		
 		if(is.character(factor)) {
 		   for (i in 1:length(factor)) {
-			ind_ifelse(colnames(rdata)==factor[i],1,0)
+			ind<-ifelse(colnames(rdata)==factor[i],1,0)
 			if (sum(ind)==0) {
-			 stop(paste(factor[i],stop1),call.=F)
+			 stop(paste(factor[i],stop1),call.=FALSE)
 			 	}	
-			varpost_order(ind)[ncol(rdata)]
-			ff_factor(rdata[,varpost])
-			factlev_levels(ff)
-			dummy_as.data.frame(model.matrix(~ ff - 1)[,-1])
-			colnames(dummy)_paste(colnames(rdata)[varpost], factlev[-1], sep = "")
-			rdata_rdata[,-varpost]
-			rdata_cbind(rdata,dummy)
+			varpost<-order(ind)[ncol(rdata)]
+			ff<-factor(rdata[,varpost])
+			factlev<-levels(ff)
+			dummy<-as.data.frame(model.matrix(~ ff - 1)[,-1])
+			colnames(dummy)<-paste(colnames(rdata)[varpost], factlev[-1], sep = "")
+			rdata<-rdata[,-varpost]
+			rdata<-cbind(rdata,dummy)
 			
 			}
 		    }
 
 		else if (is.numeric(factor)){
-		  varpost_factor+1
-		  ind_ifelse(varpost>ncol(rdata),1,0)
+		  varpost<-factor+1
+		  ind<-ifelse(varpost>ncol(rdata),1,0)
 		  if (sum(ind)>0) {
 			stop("COLUMN NUMBER OF FACTOR VARIABLES IS OUT OF BOUND,PLEASE CHECK!")			  	}
 		
 		  for (i in 1:length(factor)) {
-			ff_factor(rdata[,varpost[i]])
-			factlev_levels(ff)
-			dummy_as.data.frame(model.matrix(~ ff - 1)[,-1])
-			colnames(dummy)_paste(colnames(rdata)[varpost[i]], factlev[-1], sep = "")
-			rdata_rdata[,-varpost[i]]
-			rdata_cbind(rdata,dummy)
+			ff<-factor(rdata[,varpost[i]])
+			factlev<-levels(ff)
+			dummy<-as.data.frame(model.matrix(~ ff - 1)[,-1])
+			colnames(dummy)<-paste(colnames(rdata)[varpost[i]], factlev[-1], sep = "")
+			rdata<-rdata[,-varpost[i]]
+			rdata<-cbind(rdata,dummy)
 			
 			}
 		    }
@@ -596,7 +597,7 @@ else
 
  # @@@@@@@@@@@@@@@@@@@@@@@     CODING FUNCTION @@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
- coding_function(x=x,y=y,z=z,return=FALSE) {
+ coding<-function(x=x,y=y,z=z,return=FALSE) {
  ### This function is used to combine multiple columns of z into one column
  ### If used with combined first and second stage data (i.e. with NA for missing
  ### values), it will return sample sizes for the first and second stage 
@@ -608,8 +609,8 @@ else
  ### be provided.
  
 
- z1_data.frame(z)
- z.old_as.matrix(z)
+ z1<-data.frame(z)
+ z.old<-as.matrix(z)
 
  if (ncol(z1)>1){
  	ncz<-ncol(z1)
@@ -630,28 +631,28 @@ else
 	nlev<-length(as.numeric(levels(nz)))
 	levels(nz)<-c(1:nlev)
 	list(nz=as.numeric(nz),z=z1)
-	z_as.numeric(nz)
+	z<-as.numeric(nz)
  }
 
- levels(z)_1:length(levels(as.factor(z))) 
+ levels(z)<-1:length(levels(as.factor(z))) 
         
  ########  now prepare levels of new Z for printing        
 
- id_1:length(z)
- index_NULL
- nlev_length(levels(as.factor(z))) 
+ id<-1:length(z)
+ index<-NULL
+ nlev<-length(levels(as.factor(z))) 
        
  for (i in 1:nlev){ 
  	if (ncol(z1)>1){
-      	id1_id[z==levels(z)[i]]
-            id1_sample(id1,1)
-            index_c(index,id1)
+      	id1<-id[z==levels(z)[i]]
+            id1<-sample(id1,1)
+            index<-c(index,id1)
 	}
             
       else {
-            id1_id[z==levels(as.factor(z))[i]]
-            id1_sample(id1,1)
-            index_c(index,id1)}
+            id1<-id[z==levels(as.factor(z))[i]]
+            id1<-sample(id1,1)
+            index<-c(index,id1)}
       }
 
  data<-data.frame(y,z,x)
@@ -663,12 +664,12 @@ else
  zlev<-as.numeric(levels(factor(z)))
  ylevel<-rep(ylev,rep(length(zlev),length(ylev)))
  zlevel<-rep(zlev,length(ylev))
- index_rep(index,length(ylev))         
+ index<-rep(index,length(ylev))         
 
  ### now label the columns of z for printing
 
  if (is.null(colnames(z.old)))
- 	colnames(z.old)_paste("z",1:ncol(z.old),sep="") 
+ 	colnames(z.old)<-paste("z",1:ncol(z.old),sep="") 
 
  if (ncol(z1)>1){
  	if (sum(n1==n2)<length(n1)){ 
